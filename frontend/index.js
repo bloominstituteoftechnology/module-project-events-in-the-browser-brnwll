@@ -105,9 +105,11 @@ function moduleProject2() {
 
     // 👉 TASK 5 - End the game 👈
     function endGame() {
-      console.log('END')
-      // Mosquito Exterminator Restart
-      // Extermination completed in 337.541 seconds!
+      let button = document.createElement('button')
+      button.textContent = 'Restart'
+      button.addEventListener('click', () => location.reload())
+      document.querySelector('header h2').insertAdjacentElement('beforeend', button)
+      const info = document.querySelector('.info').textContent = `Extermination completed in ${getTimeElapsed() / 1000} seconds!`
     }
   })
   // 👆 WORK WORK ABOVE THIS LINE 👆
