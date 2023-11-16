@@ -69,22 +69,34 @@ function moduleProject2() {
     e.target.classList.add('targeted')
   }
   allSquares.forEach(square => square.addEventListener('click', handleSquareClick))
+  /**
+   * TODO: We have a bug. Clicking a mosquito filled square doesn't target
+   * because we're clicking the image and not the square.
+   * Apply another handler to the image?
+   */
 
-  document.addEventListener('keydown', evt => {
+  document.addEventListener('keydown', e => {
+
     // 👉 TASK 3 - Use the arrow keys to highlight a new square 👈
+    let targetedIdx = Array.from(allSquares).findIndex(square => square.classList.contains('targeted'))
+    if (e.key === keys.up && targetedIdx > 4) {
+      allSquares[targetedIdx].classList.remove('targeted')
+      allSquares[targetedIdx - 5].classList.add('targeted')
+    } else if (e.key === keys.down && targetedIdx < 20) {
+      allSquares[targetedIdx].classList.remove('targeted')
+      allSquares[targetedIdx + 5].classList.add('targeted')
+    } else if (e.key === keys.left && targetedIdx !== 0 && targetedIdx % 5 !== 0) {
+      allSquares[targetedIdx].classList.remove('targeted')
+      allSquares[targetedIdx - 1].classList.add('targeted')
+    } else if (e.key === keys.right && (targetedIdx + 1) % 5 !== 0) {
+      allSquares[targetedIdx].classList.remove('targeted')
+      allSquares[targetedIdx + 1].classList.add('targeted')
+    }
 
     // 👉 TASK 4 - Use the space bar to exterminate a mosquito 👈
 
     // 👉 TASK 5 - End the game 👈
   })
-
-
-
-
-
-
-
-
   // 👆 WORK WORK ABOVE THIS LINE 👆
 }
 
