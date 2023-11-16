@@ -66,14 +66,9 @@ function moduleProject2() {
   // 👉 TASK 2 - Use a click event to highlight a new square 👈
   const handleSquareClick = (e) => {
     allSquares.forEach(square => square.classList.remove('targeted'))
-    e.target.classList.add('targeted')
+    e.currentTarget.classList.add('targeted')
   }
   allSquares.forEach(square => square.addEventListener('click', handleSquareClick))
-  /**
-   * TODO: We have a bug. Clicking a mosquito filled square doesn't target
-   * because we're clicking the image and not the square.
-   * Apply another handler to the image?
-   */
 
   document.addEventListener('keydown', e => {
 
