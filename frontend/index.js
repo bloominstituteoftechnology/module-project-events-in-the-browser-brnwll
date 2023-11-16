@@ -63,6 +63,11 @@ function moduleProject2() {
     allSquares[randomInt].appendChild(mosquito)
   })
 
+  /**
+   * Ends game when mosquito count equals zero
+   */
+  let mosquitoCount = document.querySelectorAll('.square img').length;
+
   // 👉 TASK 2 - Use a click event to highlight a new square 👈
   const handleSquareClick = (e) => {
     allSquares.forEach(square => square.classList.remove('targeted'))
@@ -71,9 +76,9 @@ function moduleProject2() {
   allSquares.forEach(square => square.addEventListener('click', handleSquareClick))
 
   document.addEventListener('keydown', e => {
+    let targetedIdx = Array.from(allSquares).findIndex(square => square.classList.contains('targeted'))
 
     // 👉 TASK 3 - Use the arrow keys to highlight a new square 👈
-    let targetedIdx = Array.from(allSquares).findIndex(square => square.classList.contains('targeted'))
     if (e.key === keys.up && targetedIdx > 4) {
       allSquares[targetedIdx].classList.remove('targeted')
       allSquares[targetedIdx - 5].classList.add('targeted')
@@ -89,8 +94,21 @@ function moduleProject2() {
     }
 
     // 👉 TASK 4 - Use the space bar to exterminate a mosquito 👈
+    if (e.key === keys.space && allSquares[targetedIdx].firstChild) {
+      allSquares[targetedIdx].style.backgroundColor = 'red'
+      // decrement mosquito counter, run end of game if zero
+      mosquitoCount--
+      if (!mosquitoCount) {
+        endGame();
+      }
+    }
 
     // 👉 TASK 5 - End the game 👈
+    function endGame() {
+      console.log('END')
+      // Mosquito Exterminator Restart
+      // Extermination completed in 337.541 seconds!
+    }
   })
   // 👆 WORK WORK ABOVE THIS LINE 👆
 }
