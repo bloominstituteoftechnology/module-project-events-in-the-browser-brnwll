@@ -35,8 +35,10 @@ function moduleProject2() {
       let square = document.createElement('div')
       square.classList.add('square')
       row.appendChild(square)
-      square.addEventListener('click', () => {
+      square.addEventListener('click', (e) => {
         // 👉 TASK 2 - Use a click handler to target a square 👈
+        allSquares.forEach(square => square.classList.remove('targeted'))
+        e.currentTarget.classList.add('targeted')
       })
     }
   }
@@ -67,13 +69,6 @@ function moduleProject2() {
    * Ends game when mosquito count equals zero
    */
   let mosquitoCount = document.querySelectorAll('.square img').length;
-
-  // 👉 TASK 2 - Use a click event to highlight a new square 👈
-  const handleSquareClick = (e) => {
-    allSquares.forEach(square => square.classList.remove('targeted'))
-    e.currentTarget.classList.add('targeted')
-  }
-  allSquares.forEach(square => square.addEventListener('click', handleSquareClick))
 
   document.addEventListener('keydown', e => {
     let targetedIdx = Array.from(allSquares).findIndex(square => square.classList.contains('targeted'))
