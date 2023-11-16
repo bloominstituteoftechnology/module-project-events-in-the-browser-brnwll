@@ -63,6 +63,13 @@ function moduleProject2() {
     allSquares[randomInt].appendChild(mosquito)
   })
 
+  // 👉 TASK 2 - Use a click event to highlight a new square 👈
+  const handleSquareClick = (e) => {
+    allSquares.forEach(square => square.classList.remove('targeted'))
+    e.target.classList.add('targeted')
+  }
+  allSquares.forEach(square => square.addEventListener('click', handleSquareClick))
+
   document.addEventListener('keydown', evt => {
     // 👉 TASK 3 - Use the arrow keys to highlight a new square 👈
 
@@ -70,6 +77,14 @@ function moduleProject2() {
 
     // 👉 TASK 5 - End the game 👈
   })
+
+
+
+
+
+
+
+
   // 👆 WORK WORK ABOVE THIS LINE 👆
 }
 
